@@ -13,11 +13,28 @@ function saveLog() {
         return;
     }
 
-    alert(
-        "Log Saved!\n\n" +
-        "Activity: " + activity +
-        "\nDate: " + date +
-        "\nHours: " + hours +
-        "\nStatus: " + status
-    );
+    const logs = document.getElementById("logs");
+    const noLogs = document.getElementById("noLogs");
+
+    if (noLogs) {
+        noLogs.remove();
+    }
+
+    const logItem = document.createElement("div");
+
+    logItem.className = "log-item";
+
+    logItem.innerHTML = `
+        <strong>${activity}</strong>
+        <p>Date: ${date}</p>
+        <p>Hours: ${hours}</p>
+        <p>Status: ${status}</p>
+    `;
+
+    logs.appendChild(logItem);
+
+    document.getElementById("activity").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("hours").value = "";
+    document.getElementById("status").value = "Completed";
 }

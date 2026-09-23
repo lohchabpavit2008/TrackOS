@@ -81,3 +81,18 @@ button {
 .log-form button {
     margin-top: 10px;
 }
+.log-item {
+    background: #f4f6f8;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.log-item strong {
+    font-size: 18px;
+}
+
+.log-item p {
+    margin: 5px 0;
+    color: #666;
+}
