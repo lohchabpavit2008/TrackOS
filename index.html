@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackOS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>TrackOS</h1>
+        <p>Welcome to your activity dashboard</p>
+
+        <div class="stats">
+            <div class="card">
+                <h2>0</h2>
+                <p>Total Tasks</p>
+            </div>
+
+            <div class="card">
+                <h2>0</h2>
+                <p>Total Hours</p>
+            </div>
+
+            <div class="card">
+                <h2>0</h2>
+                <p>Completed</p>
+            </div>
+
+            <div class="card">
+                <h2>0</h2>
+                <p>Pending</p>
+            </div>
+        </div>
+
+        <h2>Recent Logs</h2>
+
+        <div class="logs">
+            <p>No activity recorded yet.</p>
+        </div>
+
+        <button onclick="startTracking()">+ Add New Log</button>
+    </div><div id="logForm" class="log-form">
+
+    <h2>Add New Log</h2>
+
+    <input type="text" id="activity" placeholder="Enter activity">
+
+    <input type="date" id="date">
+
+    <input type="number" id="hours" placeholder="Hours spent">
+
+    <select id="status">
+        <option value="Completed">Completed</option>
+        <option value="Pending">Pending</option>
+    </select>
+
+    <button onclick="saveLog()">Save Log</button>
+
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

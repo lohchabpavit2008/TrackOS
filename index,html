@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackOS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>TrackOS</h1>
+        <p>Track your daily activities easily.</p>
+
+        <button onclick="startTracking()">Start Tracking</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
