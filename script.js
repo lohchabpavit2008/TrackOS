@@ -1011,3 +1011,25 @@ document.addEventListener(
         }
     }
 );
+// TrackOS user name
+const savedUserName = localStorage.getItem("trackosName");
+
+if (!savedUserName) {
+    const userName = prompt("Welcome to TrackOS! What's your name?");
+
+    if (userName && userName.trim() !== "") {
+        localStorage.setItem("trackosName", userName.trim());
+
+        const greeting = document.getElementById("greeting");
+
+        if (greeting) {
+            greeting.textContent = "Good evening, " + userName.trim() + " 👋";
+        }
+    }
+} else {
+    const greeting = document.getElementById("greeting");
+
+    if (greeting) {
+        greeting.textContent = "Good evening, " + savedUserName + " 👋";
+    }
+}
