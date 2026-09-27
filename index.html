@@ -3,64 +3,1055 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackOS</title>
+
+    <title>TrackOS — Productivity Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>TrackOS</h1>
-        <p>Welcome to your activity dashboard</p>
+<div class="app">
 
-        <div class="stats">
-            <div class="card">
-                <h2>0</h2>
-                <p>Total Tasks</p>
-            </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-            <div class="card">
-                <h2>0</h2>
-                <p>Total Hours</p>
-            </div>
+        <div class="logo">
+            <div class="logo-icon">T</div>
 
-            <div class="card">
-                <h2>0</h2>
-                <p>Completed</p>
-            </div>
-
-            <div class="card">
-                <h2>0</h2>
-                <p>Pending</p>
+            <div>
+                <h2>TrackOS</h2>
+                <span>Productivity OS</span>
             </div>
         </div>
 
-        <h2>Recent Logs</h2>
 
-        <div class="logs" id="logs">
-    <p id="noLogs">No activity recorded yet.</p>
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN</p>
+
+            <a href="#"
+               class="nav-link active"
+               onclick="showPage('dashboard', this); return false;">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               onclick="showPage('activityPage', this); return false;">
+                <span>☷</span>
+                Activity Logs
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               onclick="showPage('analyticsPage', this); return false;">
+                <span>◫</span>
+                Analytics
+            </a>
+
+
+            <p class="nav-title">SYSTEM</p>
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="user-card">
+
+                <div class="avatar">P</div>
+
+                <div>
+                    <strong>Pavit</strong>
+                    <small>TrackOS User</small>
+                </div>
+
+            </div>
+
         </div>
 
-        <button onclick="startTracking()">+ Add New Log</button>
-        </div><div id="logForm" class="log-form">
+    </aside>
 
-    <h2>Add New Log</h2>
 
-    <input type="text" id="activity" placeholder="Enter activity">
 
-    <input type="date" id="date">
+    <!-- MAIN -->
+    <main class="main-content">
 
-    <input type="number" id="hours" placeholder="Hours spent">
 
-    <select id="status">
-        <option value="Completed">Completed</option>
-        <option value="Pending">Pending</option>
-    </select>
+        <!-- ================= DASHBOARD ================= -->
 
-    <button onclick="saveLog()">Save Log</button>
+        <section id="dashboard" class="page">
+
+            <div class="topbar">
+
+                <div>
+
+                    <p class="welcome-small">
+                        OVERVIEW
+                    </p>
+
+                    <h1>
+                        Good evening, Pavit 👋
+                    </h1>
+
+                    <p class="subtitle">
+                        Here's what's happening with your productivity.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="startTracking()">
+
+                    + Add Activity
+
+                </button>
+
+            </div>
+
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Total Activities</span>
+
+                        <div class="stat-icon purple">
+                            ▣
+                        </div>
+
+                    </div>
+
+                    <h2 id="totalTasks">0</h2>
+
+                    <p class="stat-description">
+                        All recorded activities
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Total Hours</span>
+
+                        <div class="stat-icon blue">
+                            ◷
+                        </div>
+
+                    </div>
+
+                    <h2 id="totalHours">0</h2>
+
+                    <p class="stat-description">
+                        Time tracked
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Completed</span>
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                    </div>
+
+                    <h2 id="completedTasks">0</h2>
+
+                    <p class="stat-description">
+                        Finished activities
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Pending</span>
+
+                        <div class="stat-icon orange">
+                            !
+                        </div>
+
+                    </div>
+
+                    <h2 id="pendingTasks">0</h2>
+
+                    <p class="stat-description">
+                        Activities remaining
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="dashboard-card large-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Activity
+                            </h3>
+
+                            <p>
+                                Your latest tracked activities
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="text-btn"
+                            onclick="showPage('activityPage')">
+
+                            View all →
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="logs"
+                        class="logs-container">
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Quick Actions
+                            </h3>
+
+                            <p>
+                                Manage your productivity
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <button
+                            onclick="startTracking()"
+                            class="quick-btn">
+
+                            <span class="quick-icon">
+                                +
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Add Activity
+                                </strong>
+
+                                <small>
+                                    Record new activity
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <button
+                            onclick="showPage('activityPage')"
+                            class="quick-btn">
+
+                            <span class="quick-icon">
+                                ☷
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Activity Logs
+                                </strong>
+
+                                <small>
+                                    View all activities
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <button
+                            onclick="showPage('analyticsPage')"
+                            class="quick-btn">
+
+                            <span class="quick-icon">
+                                ◫
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Analytics
+                                </strong>
+
+                                <small>
+                                    Check productivity
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADD ACTIVITY -->
+
+            <div
+                id="trackingForm"
+                class="dashboard-card tracking-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Add New Activity
+                        </h3>
+
+                        <p>
+                            Track what you worked on today.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="logForm"
+                    onsubmit="saveLog(event)">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Activity
+                            </label>
+
+                            <input
+                                type="text"
+                                id="activity"
+                                placeholder="e.g. Study, Gym, Coding"
+                                required>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                required>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Hours
+                            </label>
+
+                            <input
+                                type="number"
+                                id="hours"
+                                min="0.1"
+                                step="0.1"
+                                placeholder="2"
+                                required>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Status
+                            </label>
+
+                            <select id="status">
+
+                                <option value="Completed">
+                                    Completed
+                                </option>
+
+                                <option value="Pending">
+                                    Pending
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            onclick="clearForm()">
+
+                            Clear
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+
+                            Save Activity
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ACTIVITY LOGS ================= -->
+
+        <section
+            id="activityPage"
+            class="page hidden">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="welcome-small">
+                        TRACKING
+                    </p>
+
+                    <h1>
+                        Activity Logs
+                    </h1>
+
+                    <p class="subtitle">
+                        Search and manage all your activities.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="startTracking()">
+
+                    + Add Activity
+
+                </button>
+
+            </div>
+
+
+
+            <div class="filter-card">
+
+
+                <div class="search-box">
+
+                    <span>
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search activities..."
+                        oninput="renderActivityPage()">
+
+                </div>
+
+
+                <select
+                    id="filterStatus"
+                    onchange="renderActivityPage()">
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            All Activities
+                        </h3>
+
+                        <p>
+                            Your complete productivity history
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="allLogs"
+                    class="all-logs">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+      <section
+    id="analyticsPage"
+    class="page hidden">
+
+    <div class="page-header">
+
+        <div>
+
+            <p class="welcome-small">
+                INSIGHTS
+            </p>
+
+            <h1>
+                Analytics
+            </h1>
+
+            <p class="subtitle">
+                Understand your productivity patterns.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANALYTICS STATS -->
+
+    <div class="stats-grid analytics-stats">
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <span>
+                    Total Activities
+                </span>
+
+                <div class="stat-icon purple">
+                    ▣
+                </div>
+
+            </div>
+
+            <h2 id="analyticsTasks">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <span>
+                    Total Hours
+                </span>
+
+                <div class="stat-icon blue">
+                    ◷
+                </div>
+
+            </div>
+
+            <h2 id="analyticsHours">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <span>
+                    Completed
+                </span>
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+            </div>
+
+            <h2 id="analyticsCompleted">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <span>
+                    Completion Rate
+                </span>
+
+                <div class="stat-icon orange">
+                    %
+                </div>
+
+            </div>
+
+            <h2 id="completionRate">
+                0%
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCTIVITY INSIGHTS -->
+
+    <div class="analytics-grid">
+
+        <div class="dashboard-card insight-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Most Productive Day
+                    </h3>
+
+                    <p>
+                        Day with the highest tracked hours
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="big-insight">
+
+                <span
+                    id="mostProductiveDay">
+                    —
+                </span>
+
+                <small
+                    id="mostProductiveHours">
+                    0 hours
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card insight-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Active Days
+                    </h3>
+
+                    <p>
+                        Days on which you tracked activity
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="big-insight">
+
+                <span
+                    id="activeDays">
+                    0
+                </span>
+
+                <small>
+                    days
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- WEEKLY PRODUCTIVITY -->
+
+    <div class="dashboard-card weekly-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Weekly Productivity
+                </h3>
+
+                <p>
+                    Your tracked hours over the last 7 days
+                </p>
+
+            </div>
+
+
+            <div class="weekly-total">
+
+                <strong id="weeklyTotalHours">
+                    0h
+                </strong>
+
+                <span>
+                    This week
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="weekly-chart">
+
+            <div class="chart-y-axis">
+
+                <span>4h</span>
+                <span>3h</span>
+                <span>2h</span>
+                <span>1h</span>
+                <span>0h</span>
+
+            </div>
+
+
+            <div class="chart-content">
+
+                <div class="chart-grid-lines">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <div
+                    id="weeklyBars"
+                    class="weekly-bars">
+                </div>
+
+
+                <div
+                    id="weeklyLabels"
+                    class="weekly-labels">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIVITY BREAKDOWN -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Activity Breakdown
+                </h3>
+
+                <p>
+                    Time spent on different activities
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="activityBreakdown"
+            class="activity-breakdown">
+
+            <div class="empty-state">
+                No activity data yet.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANALYTICS GRID -->
+
+    <div class="analytics-grid">
+
+
+        <!-- COMPLETION -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Completion Overview
+                    </h3>
+
+                    <p>
+                        Completed vs pending activities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-area">
+
+                <div class="chart-bar-row">
+
+                    <div class="chart-label">
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedChartValue">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="bar-background">
+
+                        <div
+                            id="completedBar"
+                            class="bar completed-bar">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-bar-row">
+
+                    <div class="chart-label">
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="pendingChartValue">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="bar-background">
+
+                        <div
+                            id="pendingBar"
+                            class="bar pending-bar">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIME -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Time Overview
+                    </h3>
+
+                    <p>
+                        How much time you've tracked
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="time-overview">
+
+                <div class="time-number">
+
+                    <span id="timeTotalHours">
+                        0
+                    </span>
+
+                    <small>
+                        hours tracked
+                    </small>
+
+                </div>
+
+
+                <div class="average-time">
+
+                    <span>
+                        Average per activity
+                    </span>
+
+                    <strong id="averageHours">
+                        0 hrs
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>  
+
+    </main>
 
 </div>
 
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 
 </body>
 </html>
